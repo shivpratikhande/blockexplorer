@@ -1,36 +1,37 @@
-import { Alchemy, Network } from 'alchemy-sdk';
+// App.js
 import { useEffect, useState } from 'react';
 
-import './App.css';
-
-// Refer to the README doc for more information about using API
-// keys in client-side code. You should never do this in production
-// level code.
-const settings = {
-  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
-  network: Network.ETH_MAINNET,
-};
-
-
-// In this week's lessons we used ethers.js. Here we are using the
-// Alchemy SDK is an umbrella library with several different packages.
-//
-// You can read more about the packages here:
-//   https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview#api-surface
-const alchemy = new Alchemy(settings);
-
 function App() {
-  const [blockNumber, setBlockNumber] = useState();
+  const [blockNumber, setBlockNumber] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getBlockNumber() {
-      setBlockNumber(await alchemy.core.getBlockNumber());
+      try {
+        const response = await fetch('http://localhost:3001/api/blockNumber');
+        const data = await response.json();
+        setBlockNumber(data.result); // Adjust based on actual response structure
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching block number:', error);
+        setLoading(false);
+      }
     }
 
     getBlockNumber();
-  });
+  }, []);
 
-  return <div className="App">Block Number: {blockNumber}</div>;
+
+
+const hex = blockNumber;
+const decimal = parseInt(hex, 16);
+
+
+  return (
+    <div className="App">
+      {loading ? 'Loading...' : `Block Number: ${decimal}`}
+    </div>
+  );
 }
 
 export default App;
