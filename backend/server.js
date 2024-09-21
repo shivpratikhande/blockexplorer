@@ -89,8 +89,6 @@ app.get('/api/balance/:address', async (req, res) => {
     res.status(error.response ? error.response.status : 500).send('Request failed');
   }
 });
-
-// Endpoint to get transaction history for an address
 app.get('/api/transactions/:address', async (req, res) => {
   const address = req.params.address;
 
@@ -105,15 +103,23 @@ app.get('/api/transactions/:address', async (req, res) => {
       jsonrpc: '2.0',
       id: 1,
       method: 'eth_blockNumber',
-      params: []
+      params: {
+        module: 'account',
+        action: 'txlist',
+        address: address,
+        startblock: 0,
+        endblock: 'latest',
+        sort: 'desc',
+        apikey: process.env.API_KEY,
+      }
     });
     const latestBlockNumber = parseInt(blockNumberResponse.data.result, 16);
 
     // Initialize an array to hold transactions
     const transactions = [];
 
-    // Loop through the last 100 blocks
-    for (let i = latestBlockNumber; i >= latestBlockNumber - 100; i--) {
+    // Loop through the last 100 blocks, ensuring we don't go below block 0
+    for (let i = latestBlockNumber; i >= Math.max(latestBlockNumber - 4, 0); i--) {
       const blockResponse = await axios.post(API_URL, {
         jsonrpc: '2.0',
         id: 1,
@@ -122,8 +128,9 @@ app.get('/api/transactions/:address', async (req, res) => {
       });
 
       if (blockResponse.data.result && blockResponse.data.result.transactions) {
+        console.log(blockResponse.data.result)
         blockResponse.data.result.transactions.forEach(tx => {
-          if (tx && tx.from && tx.to) { // Check if tx, tx.from, and tx.to are not null
+          if (tx && tx.from && tx.to) {
             if (tx.from.toLowerCase() === address.toLowerCase() || tx.to.toLowerCase() === address.toLowerCase()) {
               transactions.push(tx);
             }
@@ -132,28 +139,32 @@ app.get('/api/transactions/:address', async (req, res) => {
       }
     }
 
-    res.json(transactions.length > 0 ? transactions : { message: 'No transactions found for this address.' });
+    res.json(transactions);
   } catch (error) {
     console.error('Error fetching transaction history:', error.message);
     res.status(500).send('Request failed');
   }
 });
 
-// Helper function to convert number to hex
-function toHex(number) {
-  return '0x' + number.toString(16);
-}
+app.get('api/balance/:para', async(req, res)=>{
+  const address = req.params.para
+  try {
+    const response = await axios.post(API_URL,{
+      jsonrpc : "2.0",
+      id: "1",
+      method:'eth_getBalance',
+      params:[address, "latest"]
+    })
 
+    const amount = parseInt(response.data.result, 16);
+    console.log(amount)
+    res.json(amount)
 
-function toHex(number) {
-  return '0x' + number.toString(16);
-}
-
-
-// Helper function to convert number to hex
-function toHex(number) {
-  return '0x' + number.toString(16);
-}
+    
+  } catch (error) {
+    
+  }
+})
 
 
 // Start the server
