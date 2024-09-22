@@ -7,6 +7,15 @@
   --foreground: #171717;
 }
 
+/* globals.css */
+.bg-custom {
+  background-image: url('../app/assets/background.jpg'); /* Ensure the path is correct */
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Full viewport height */
+}
+
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
