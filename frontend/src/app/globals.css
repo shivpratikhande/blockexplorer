@@ -5,7 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
 }
+
 
 /* globals.css */
 .bg-custom {
@@ -41,6 +43,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  
 }
 
 @layer utilities {

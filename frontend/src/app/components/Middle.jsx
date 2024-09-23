@@ -39,7 +39,7 @@ const TypingEffect = ({ text, speed }) => {
 function Middle() {
 
     return (
-        <div className='bg-black w-full h-52 py-5 align-middle text-center font-mono'>
+        <div className='bg-black w-full h-52 py-5 align-middle text-center font-mono '>
             <Container>
                 <TypingEffect text="  The Sepolia Blockchain Explorer" speed={100} />
                 <motion.div

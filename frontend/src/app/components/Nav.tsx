@@ -36,18 +36,18 @@ function Nav() {
     }, []);
 
     return (
-        <div>
-            <div className='text-white bg-black font-bold'>
+        <div className='sticky top-0 z-50'>
+            <div className='text-white bg-black font-bold sticky top-0 z-50'>
                 <Container>
                     <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-[-5px]'>
-                            <div className="w-16 h-16 animate-rotate">
+                            <div className="w-[70px] h-[70px]  animate-rotate">
                                 <Image
                                     src={logo3}
                                     alt='logo'
                                 />
                             </div>
-                            <h1 className='font-bold' style={{ textShadow: '2px 2px 4px rgba(16, 185, 129, 0.7)' }}>
+                            <h1 className='font-bold text-xl' style={{ textShadow: '2px 2px 4px rgba(16, 185, 129, 0.7)' }}>
                                 BlockExplrr
                             </h1>
                         </div>

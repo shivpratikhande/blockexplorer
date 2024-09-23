@@ -11,7 +11,7 @@ function Content() {
         <div>
             <Container>
                 <div className=' flex flex-col gap-16'>
-                    <motion.div className=' '
+                    <motion.div className='  '
                         initial={{ opacity: 0, y: 20 }} // Initial state
                         animate={{ opacity: 1, y: 0 }}  // Animate to this state
                         transition={{ duration: 0.5, delay: 2 }} // Transition settings
@@ -21,6 +21,16 @@ function Content() {
                     <LatestBlock />
 
                 </div>
+
+                <div className="grid grid-cols-2 gap-6 ..."> 
+                    <div className="col-span-1 p-5 bg-funkyGreen rounded-lg shadow-lg ...">
+                        asdasdasd
+                    </div>
+                    <div className="col-span-1 p-5 bg-funkyBlue rounded-lg shadow-lg ...">
+                        asdasdasd
+                    </div>
+                </div>
+
 
             </Container>
         </div>
