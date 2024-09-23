@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import CloseIcon from '@mui/icons-material/Close';
+import WalletConnect from './WalletConnect';
 
 function Nav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -50,6 +51,8 @@ function Nav() {
                             <h1 className='font-bold text-xl' style={{ textShadow: '2px 2px 4px rgba(16, 185, 129, 0.7)' }}>
                                 BlockExplrr
                             </h1>
+{/*                             <WalletConnect />
+ */}
                         </div>
 
                         <div className='md:hidden'>

@@ -13,17 +13,17 @@ function LatestBlock() {
           </div>
           <hr className='text-black' />
           
-          <div className="h-72 overflow-y-auto p-4 pr-5 border-2 border-black"> {/* Scrollable container */}
+          <div className="h-72 overflow-y-auto p-3 pr-5 "> {/* Scrollable container */}
             {[...Array(10)].map((_, index) => ( // Sample data for demonstration
-              <div key={index}>
+              <div key={index} className=' bg-zinc-400 my-3 rounded-lg p-2 mx-[-5px]'>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                   <div className='grid grid-cols-2 gap-6 align-middle items-center '>
                     <div className="flex items-center mb-2 sm:mb-0">
                       <Image
                         src={box}
                         alt="box"
-                        height={40}
-                        width={40}
+                        height={50}
+                        width={50}
                         className=" ml-[-15px]"
                       />
                       <div className="ml-">
