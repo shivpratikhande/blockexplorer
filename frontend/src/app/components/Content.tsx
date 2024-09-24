@@ -5,6 +5,10 @@ import Overview from './Overview';
 import Container from './Container';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import LatestBlock from './LatestBlock';
+import LatestTrans from './LatestTrans';
+import MoreInfo from './MoreInfo';
+
+
 
 function Content() {
 
@@ -29,6 +33,15 @@ function Content() {
                     >
                         <Overview />
                     </motion.div>
+                    <motion.div
+                        /* style={{ opacity, y }}
+                        className="p-4" */
+                        initial={{ opacity: 0, y: 20 }} // Initial state
+                        animate={{ opacity: 1, y: 0 }}  // Animate to this state
+                        transition={{ duration: 0.5, delay: 1 }} // Transition settings
+                    >
+                        <MoreInfo />
+                    </motion.div>
                     <motion.div className=''
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}  // Animate to this state
@@ -37,8 +50,15 @@ function Content() {
                     >
 
                         <LatestBlock />
+                    </motion.div>
+                    <motion.div className=''
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}  // Animate to this state
+                        transition={{ duration: 0.5, delay: 1.5 }}
 
+                    >
 
+                        <LatestTrans />
                     </motion.div>
 
                 </div>

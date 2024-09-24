@@ -6,7 +6,7 @@ import eth from "../assets/eth.png"
 function Overview() {
     return (
         <div className=' mx-1 my-[-25px]'>
-            <Card>
+            <Card value={"bg-gradient-to-r from-green-500 to-teal-500 text-white px-5 pt-3 rounded-lg shadow-lg"}>
                 <div className=' flex flex-col gap-5'>
                     <h1 className=' font-medium '>Overview</h1>
                     <div className=' '>

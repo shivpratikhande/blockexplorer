@@ -9,7 +9,7 @@ function LatestBlock() {
       <Card value={ " bg-transparent my-3  p-2 mx-[-5px] rounded-lg  "}>
         <div> 
           <div className='pt-2 '>
-            <h1 className='font-mono text-lg font-bold pb-2 text-white  ' >Latest Blocks</h1>
+            <h1 className='font-mono text-lg font-bold pb-2 text-white  ' >Latest Transaction</h1>
           </div>
           <hr className='text-black' />
           

@@ -7,11 +7,11 @@ import back from "../app/assets/background.jpg"
 
 function page() {
   return (
-    <div className="bg-custom">
-    
-        <Home/>
-      
 
+    <div className=" h-screen bg-fixed bg-center bg-cover bg-no-repeat ">
+      <div className='h-[200vh] overflow-y-scroll bg-custom'>
+        <Home />
+      </div>
     </div>
   )
 }
