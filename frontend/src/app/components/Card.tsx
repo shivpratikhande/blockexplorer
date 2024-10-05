@@ -7,8 +7,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ children, value }) => {
     return (
-<div className={value}>
-{children}
+        <div className={value}>
+            {children}
         </div>
     );
 };

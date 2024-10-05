@@ -8,10 +8,11 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../store/store'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { styleText } from 'util'
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface BalanceData {
     balance: string;
-    address:string
+    address: string
 }
 
 const Overview: React.FC = () => {
@@ -53,44 +54,55 @@ const Overview: React.FC = () => {
     const handleCopy = () => {
         if (data && data.address) {
             navigator.clipboard.writeText(data.address);
-            
+
         }
     };
+
+    if (loading) return
 
 
     //0xe890D42AFd5EA1a8506F117A8c352937A164BaaA
     return (
-        <div className=' mx-1 my-[-25px]'>
-            <Card value={"bg-gradient-to-r from-green-500 to-teal-500 text-white px-5 pt-3 rounded-lg shadow-lg"}>
-                <div className=' flex flex-col gap-5'>
-                    <div className=' flex justify-between'>
-                        <h1 className=' font-medium '>Overview</h1>
-                        <div className=' flex gap-2'>
-                            <h1 className='font-medium'>{truncateAddress(data?.address)}</h1>
-                            <button onClick={handleCopy} className=' font-bold hover:bg-black hover:rounded-sm' >
-                                <ContentCopyIcon className=" text-xl font-bold" />
-                            </button>
-                        </div>
-
-                    </div>
-                    <div className=' '>
-                        <p className=' text-black font-mono text-sm mb-[-8px]'>ETH BALANCE</p>
-                        <div className=' flex items-center align-middle ml-[-17px]'>
-                            <Image
-                                src={eth}
-                                alt='eth'
-                                height={50}
-                                className=''
-                            />
-                            <p className='font-semibold'>{data ? `${data.balance} ETH` : 'Loading...'}</p>
+        <motion.div
+            /* style={{ opacity, y }}
+            className="p-4" */
+            initial={{ opacity: 0, y: 20 }} // Initial state
+            animate={{ opacity: 1, y: 0 }}  // Animate to this state
+            transition={{ duration: 0.5, delay: 1 }} // Transition settings
+        >
+            <div className=' mx-1 my-[-25px]'>
+                <Card value={"bg-gradient-to-r from-green-500 to-teal-500 text-white px-5 pt-3 rounded-lg shadow-lg"}>
+                    <div className=' flex flex-col gap-5'>
+                        <div className=' flex justify-between'>
+                            <h1 className=' font-medium '>Overview</h1>
+                            <div className=' flex gap-2'>
+                                <h1 className='font-medium'>{truncateAddress(data?.address)}</h1>
+                                <button onClick={handleCopy} className=' font-bold hover:bg-black hover:rounded-sm' >
+                                    <ContentCopyIcon className=" text-xl font-bold" />
+                                </button>
+                            </div>
 
                         </div>
+                        <div className=' '>
+                            <p className=' text-black font-mono text-sm mb-[-8px]'>SEPOLIA ETH BALANCE</p>
+                            <div className=' flex items-center align-middle ml-[-17px]'>
+                                <Image
+                                    src={eth}
+                                    alt='eth'
+                                    height={50}
+                                    className=''
+                                />
+                                <p className='font-semibold'>{data ? `${data.balance} ETH` : 'Loading...'}</p>
+
+                            </div>
 
 
+                        </div>
                     </div>
-                </div>
-            </Card>
-        </div>
+                </Card>
+            </div>
+        </motion.div>
+
     )
 }
 
